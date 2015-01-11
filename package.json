@@ -1,0 +1,18 @@
+{
+  "name": "SyncLib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SyncLib.js",
+  "dependencies": {
+    "socket.io": "^1.2.1"
+  },
+  "devDependencies": {
+    "express": "^4.10.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,44 @@
+<h1> 3 Way binding using Rivets.js</h1>
+
+<div id="myComponent">
+    <input rv-value="scope.name">
+    <p><span rv-html="scope.name"></span></p>
+</div>
+
+<ul>
+    <li rv-each-person="scope.persons">
+        <span rv-html="person"></span>
+    </li>
+</ul>
+
+
+
+<div id="log"></div>
+<script src="/bower_components/rivets/dist/rivets.bundled.min.js"></script>
+<script src="/bower_components/socket.io-client/socket.io.js"></script>
+
+<script src="load1.js"></script>
+<script>
+
+    var a = {
+        name: "Narendra Sisodiya",
+        id:"23465436fssdfg",
+        persons: ["a", "b", "c"]
+    };
+
+    sightglass.adapters = rivets.adapters;
+    sightglass.root = '.';
+
+    sightglass(a, "name", function () {
+        document.getElementById("log").innerHTML = "Sending XHR call to update a.name -><br/>" + 'util.ajax("/update/person/' + a.id + '", {name:"'+a.name+'"})';
+    });
+    window.setTimeout(function () {
+        alert("Ohh, we have received Some data from socket.io");
+        a.name = "James Bond";
+        //TODO - updating a.name this way should not generate additional XHR call !
+    }, 6000);
+
+    rivets.bind(document.getElementById("myComponent"), {
+        scope: a
+    });
+</script>
